@@ -29,18 +29,21 @@
 ## Good Luck!                                                               	##
 ##################################################################################
 ##################################################################################
-
+import math
+def calprob( first, stdev, mean) :
+	ans =  (1 / (stdev * math.sqrt(2*math.pi)))
+	power = ((first-mean)*(first-mean))/(2*stdev*stdev);
+	ans*= math.exp(-power)
+	return ans
 
 def findSecondMeasurement(firstMeasurement, standardDeviation):
 	lisa = 110
 	susan = 90
-
-	##################################
-	##          FILL ME IN          ##
-	##################################
-
-	secondMeasurement = firstMeasurement + standardDeviation   # Replace me with your answer
-
+	plisa = calprob(firstMeasurement,standardDeviation,lisa)
+	psusan = calprob(first,sd,susan)
+	nplisa = plisa/(plisa+psusan)
+	npsusan = psusan/(plisa+psusan)
+	secondMeasurement = lisa*nplisa + susan*npsusan
 	return round(secondMeasurement, 2)
 
 if __name__ == "__main__":
